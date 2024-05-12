@@ -29,7 +29,7 @@ from src.constants.constants import CLASS_NAMES
 torch.cuda.empty_cache()
 
 
-def train(model, device, train_loader, optimizer, epoch, loss_fn, scaler, losses, validation_accuracies, args):
+def train(model, device, train_loader, optimizer, epoch, loss_fn, scaler, losses, validation_accuracies, val_loader, args):
     model.train()
     total_loss = 0
 
@@ -57,7 +57,7 @@ def train(model, device, train_loader, optimizer, epoch, loss_fn, scaler, losses
         if batch_idx % args.plot_loss_every_n_iteration == 0 and batch_idx != 0:
             plot_loss(losses, f"loss_epoch_{epoch}_idx_{batch_idx}", args)
 
-    validate(model, device, validation_accuracies, args)
+    validate(model, device, val_loader, epoch, loss_fn, validation_accuracies, args)
 
 
 def validate(model, device, test_loader, epoch, loss_fn, accuracies, args):
@@ -148,7 +148,7 @@ def main(args):
         train_dataset, batch_size=args.batch_size, num_workers=args.num_workers, shuffle=True, pin_memory=True
     )
 
-    validation_dataset = DataLoader(
+    validation_loader = DataLoader(
         validation_dataset, batch_size=args.batch_size, num_workers=args.num_workers, shuffle=False, pin_memory=True
     )
 
@@ -202,7 +202,7 @@ def main(args):
     validation_accuracies = []
 
     for epoch in range(1, args.num_epochs + 1):
-        train(model, device, train_loader, optimizer, epoch, loss_fn, scaler, losses, validation_accuracies, args)
+        train(model, device, train_loader, optimizer, epoch, loss_fn, scaler, losses, validation_accuracies, validation_loader, args)
         test(model, device, test_loader, epoch, loss_fn, args)
 
         if args.save_checkpoints and epoch % args.save_checkpoints_epoch == 0:
