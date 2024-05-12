@@ -2,7 +2,7 @@
 
 ## CNN Methods: ResNet, VGG, AlexNet
 
-## Traditional Methods: KNN, SupportVM, Random Forest
+## Traditional Methods: KNN, SupportVM, Random Forest
 
 ### Running the training scripts:
 
@@ -22,7 +22,6 @@ For pretrained models:
 
 ResNet: https://drive.google.com/drive/folders/1QRLjZGcxCFpY4nbTQRdiFVS2lSQrwgzO?usp=drive_link
 
-VGG: ekliyorsan şunu da ekleyebilirsn abi:
-https://drive.google.com/drive/folders/1VncLbFgGU4xxRDSC_lTN2-i9NTW1Wf3J?usp=sharing
+VGG: https://drive.google.com/drive/folders/1VncLbFgGU4xxRDSC_lTN2-i9NTW1Wf3J?usp=sharing
 
 AlexNet: https://drive.google.com/drive/u/0/folders/1oR_oalud0bnqhUCyOEqBgzg46XtuGsag
